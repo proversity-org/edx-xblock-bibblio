@@ -1,5 +1,21 @@
 <div class="bibblio_block">
-<p>BibblioXBlock: count is now
-    <span class='count'>{self.count}</span> (click me to increment).
-</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <button class="btn btn-lg btn-default">Refresh</button>
+      </div>
+    </div>
+    <div class="text-center" id="loading">
+      <i class="fa fa-refresh fa-spin fa-5x fa-fw"></i>
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 id="title"></h3>
+      </div>
+      <div class="col-xs-12">
+        <div id="bib_related-content"></div>
+      </div>
+    </div>
+  </div>
 </div>
