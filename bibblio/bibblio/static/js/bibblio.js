@@ -1,11 +1,10 @@
 /* Javascript for BibblioXBlock. */
 function BibblioXBlock(runtime, element) {
     $(document).ready(function() {
-        console.log('ready');
-
+    
         $("#loading").hide();
         var handlerUrl = runtime.handlerUrl(element, 'recommendations');
-        
+
         loadRecommendations()
 
         $('button', element).click(function(eventObject) {

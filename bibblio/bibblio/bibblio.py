@@ -85,16 +85,14 @@ class BibblioXBlock(XBlock):
         access_token = response.get('access_token', None)
 
         bibbliothon.access_token = access_token
-        payload = {
-            'name': 'What Mr. Robot\'s Rami Malek Really Snorts in Those Morphine Scenes',
-            'url': 'https://www.youtube.com/watch?v=JqONvYXC_MQ', 
-            'text': 'Rami Malek has a whole system for his character\'s drug scenes.'
-        }
+        # payload = {
+        #     'name': 'What Mr. Robot\'s Rami Malek Really Snorts in Those Morphine Scenes',
+        #     'url': 'https://www.youtube.com/watch?v=JqONvYXC_MQ', 
+        #     'text': 'Rami Malek has a whole system for his character\'s drug scenes.'
+        # }
 
-        print payload
-
-        content_item = bibbliothon.Enrichment.create_content_item(payload)
-        content_items = bibbliothon.Enrichment.get_content_items()
+        # content_item = bibbliothon.Enrichment.create_content_item(payload)
+        content_items = bibbliothon.Enrichment.get_content_items(limit=100)
 
         return {"token": access_token, "contentItems": content_items}
 
