@@ -1,9 +1,16 @@
 /* CSS for BibblioXBlock */
 
-.bibblio_block .count {
+.bibblio_block .token {
     font-weight: bold;
 }
 
 .bibblio_block p {
     cursor: pointer;
+}
+
+.loading {
+  position: 'fixed';
+  top: '50%';
+  left: '50%';
+  transform: translate(-50%, -50%);
 }
