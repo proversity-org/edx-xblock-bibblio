@@ -1,0 +1,9 @@
+/* CSS for BibblioXBlock */
+
+.bibblio_block .count {
+    font-weight: bold;
+}
+
+.bibblio_block p {
+    cursor: pointer;
+}
