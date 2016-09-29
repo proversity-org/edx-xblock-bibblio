@@ -1,9 +1,13 @@
 bibblio/__init__.py
 bibblio/bibblio.py
 bibblio/static/README.txt
+bibblio/static/css/bib-related-content.css
 bibblio/static/css/bibblio.css
 bibblio/static/html/bibblio.html
-bibblio/static/js/src/bibblio.js
+bibblio/static/js/.DS_Store
+bibblio/static/js/bib-related-content.js
+bibblio/static/js/bibblio.js
+bibblio/static/js/underscore-min.js
 bibblio_xblock.egg-info/PKG-INFO
 bibblio_xblock.egg-info/SOURCES.txt
 bibblio_xblock.egg-info/dependency_links.txt

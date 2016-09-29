@@ -24,18 +24,21 @@ function BibblioXBlock(runtime, element) {
         }
 
         function showRecommendations(result) {
-            var contentItems = result.contentItems.results;
-            var random = Math.floor(Math.random() * contentItems.length);
-            var contentItem = contentItems[random];
             $("#loading").hide();
-            $("#title").append('Recommendations for <a href="' + contentItem.url + '" target="_blank">' + contentItem.name + '</a>');  
-            bib_initRelatedContent("bib_related-content",
-                result.token,
-                contentItem.contentItemId,
-                {
-                    stylePreset: "grid-4", // Options: grid-4, box-5, box-6. Default: box-6,
-                }
-            ); 
+            var contentItem = result.contentItem;
+
+            if (contentItem.status >= 400) {
+                $("#title").append('Content Item not found.');
+            } else {
+                $("#title").append('Recommendations for <a href="' + contentItem.url + '" target="_blank">' + contentItem.name + '</a>');  
+                bib_initRelatedContent("bib_related-content",
+                    result.token,
+                    contentItem.contentItemId,
+                    {
+                        stylePreset: "grid-4", // Options: grid-4, box-5, box-6. Default: box-6,
+                    }
+                ); 
+            }
         }
     });
 }

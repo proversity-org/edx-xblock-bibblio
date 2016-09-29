@@ -7,8 +7,9 @@ import bibbliothon
 import pkg_resources
 
 from xblock.core import XBlock
-from xblock.fields import Scope, Integer
+from xblock.fields import Scope, Integer, String
 from xblock.fragment import Fragment
+from xblockutils.studio_editable import StudioEditableXBlockMixin
 
 # Global variables
 bootstrap_css = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
@@ -16,7 +17,7 @@ bootstrap_js = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min
 fontawesome_js = 'https://use.fontawesome.com/c80492468b.js'
 jquery = 'https://code.jquery.com/jquery-1.12.3.min.js'
 
-class BibblioXBlock(XBlock):
+class BibblioXBlock(StudioEditableXBlockMixin, XBlock):
     """
     TO-DO: document what your XBlock does.
     """
@@ -24,11 +25,13 @@ class BibblioXBlock(XBlock):
     # Fields are defined on the class.  You can access them in your code as
     # self.<fieldname>.
 
-    # TO-DO: delete count, and define your own fields.
-    count = Integer(
-        default=0, scope=Scope.user_state,
-        help="A simple counter, to show something happening",
+    content_item_id = String(
+        display_name="Content Item ID",
+        help="Will retrieve recommendations based on this ID.",
+        default='',
+        scope=Scope.content
     )
+    editable_fields = ('content_item_id', )
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -85,16 +88,10 @@ class BibblioXBlock(XBlock):
         access_token = response.get('access_token', None)
 
         bibbliothon.access_token = access_token
-        # payload = {
-        #     'name': 'What Mr. Robot\'s Rami Malek Really Snorts in Those Morphine Scenes',
-        #     'url': 'https://www.youtube.com/watch?v=JqONvYXC_MQ', 
-        #     'text': 'Rami Malek has a whole system for his character\'s drug scenes.'
-        # }
+        content_item_id = self.content_item_id if len(self.content_item_id) > 0 else 'no-content-item-id'
+        content_item = bibbliothon.Enrichment.get_content_item(content_item_id)
 
-        # content_item = bibbliothon.Enrichment.create_content_item(payload)
-        content_items = bibbliothon.Enrichment.get_content_items(limit=100)
-
-        return {"token": access_token, "contentItems": content_items}
+        return {"token": access_token, "contentItem": content_item}
 
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.
