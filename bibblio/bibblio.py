@@ -12,10 +12,7 @@ from xblock.fragment import Fragment
 from xblockutils.studio_editable import StudioEditableXBlockMixin
 
 # Global variables
-bootstrap_css = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
-bootstrap_js = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
 fontawesome_js = 'https://use.fontawesome.com/c80492468b.js'
-jquery = 'https://code.jquery.com/jquery-1.12.3.min.js'
 
 class BibblioXBlock(StudioEditableXBlockMixin, XBlock):
     """
@@ -48,9 +45,6 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock):
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/bibblio.css"))
         frag.add_css(self.resource_string("static/css/bib-related-content.css"))
-        frag.add_css_url(bootstrap_css)
-        frag.add_javascript_url(jquery)
-        frag.add_javascript_url(bootstrap_js)
         frag.add_javascript_url(fontawesome_js)
         frag.add_javascript(self.resource_string("static/js/bibblio.js"))
         frag.add_javascript(self.resource_string("static/js/bibblio.js"))
