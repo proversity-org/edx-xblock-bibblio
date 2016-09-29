@@ -14,3 +14,7 @@
   left: '50%';
   transform: translate(-50%, -50%);
 }
+
+.course-wrapper .course-content .vert-mod .vert>.xblock-student_view {
+  border: none;
+}

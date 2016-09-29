@@ -47,7 +47,6 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock):
         frag.add_css(self.resource_string("static/css/bib-related-content.css"))
         frag.add_javascript_url(fontawesome_js)
         frag.add_javascript(self.resource_string("static/js/bibblio.js"))
-        frag.add_javascript(self.resource_string("static/js/bibblio.js"))
         frag.add_javascript(self.resource_string("static/js/underscore-min.js"))
         frag.add_javascript(self.resource_string("static/js/bib-related-content.js"))
         frag.initialize_js('BibblioXBlock')
