@@ -28,7 +28,13 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock):
         default='',
         scope=Scope.content
     )
-    editable_fields = ('content_item_id', )
+    catalog_id = String(
+        display_name="Catalog ID",
+        help="Catalog of the organization (eg. Network Rail).",
+        default='',
+        scope=Scope.content
+    )
+    editable_fields = ('content_item_id', 'catalog_id',)
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
