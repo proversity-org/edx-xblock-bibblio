@@ -31,7 +31,7 @@ setup(
     install_requires=[
         'XBlock',
         'xblock-utils',
-        'bibbliothon'
+        'bibbliothon==1.1.1'
     ],
     entry_points={
         'xblock.v1': [

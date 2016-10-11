@@ -88,6 +88,7 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock):
 
         bibbliothon.access_token = access_token
         content_item_id = self.content_item_id if len(self.content_item_id) > 0 else 'no-content-item-id'
+        print content_item_id
         content_item = bibbliothon.Enrichment.get_content_item(content_item_id)
 
         return {"token": access_token, "contentItem": content_item}
