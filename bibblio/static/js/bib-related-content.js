@@ -106,7 +106,7 @@ function bib_recommendationUrl(contentItemId, catalogueIds, limit, page, fields)
     }).join("&");
 
     // TODO: make this much nicer
-    return "https://api.bibblio.org/content-items/" + contentItemId + "/recommendations?limit=" + limit + "&page=" + page + "&" + querystringFields + (querystringCatalogueIds ? "&" + querystringCatalogueIds : "");
+    return "http://bibblioap-ecselast-881w20a9rr8s-1070858493.eu-west-1.elb.amazonaws.com/" + contentItemId + "/recommendations?limit=" + limit + "&page=" + page + "&" + querystringFields + (querystringCatalogueIds ? "&" + querystringCatalogueIds : "");
 }
 
 function bib_toTitleCase(str) {
