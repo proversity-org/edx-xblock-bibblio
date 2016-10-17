@@ -24,7 +24,7 @@ class BibblioXBlock(XBlock, StudioEditableXBlockMixin, XBlockWithSettingsMixin):
         display_name="Display Name",
         help="This name appears in the horizontal navigation at the top of the page.",
         scope=Scope.settings,
-        default="Recommended Resources"
+        default="Bibblio Recommendations"
     )
 
     content_item_id = String(
