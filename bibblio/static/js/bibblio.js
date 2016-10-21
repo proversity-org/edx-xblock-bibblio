@@ -26,8 +26,9 @@ function BibblioXBlock(runtime, element) {
             $("#loading").hide();
             var contentItem = result.contentItem;
             var catalogId = result.catalogId;
-
-            if (contentItem.status < 400) {
+            if (contentItem.status >= 400) {
+                // Something went wrong
+            } else {
                 bib_initRelatedContent("bib_related-content",
                     result.token,
                     contentItem.contentItemId,
