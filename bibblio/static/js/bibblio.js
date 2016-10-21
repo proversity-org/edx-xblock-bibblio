@@ -26,6 +26,7 @@ function BibblioXBlock(runtime, element) {
         function showRecommendations(result) {
             $("#loading").hide();
             var contentItem = result.contentItem;
+            var catalogId = result.catalogId;
 
             if (contentItem.status >= 400) {
                 $("#title").append('Content Item not found.');
@@ -35,7 +36,8 @@ function BibblioXBlock(runtime, element) {
                     result.token,
                     contentItem.contentItemId,
                     {
-                        stylePreset: "grid-4", // Options: grid-4, box-5, box-6. Default: box-6,
+                        stylePreset: "grid-4",
+                        catalogueIds: [catalogId]
                     }
                 ); 
             }

@@ -89,7 +89,7 @@ function bib_renderContentItemTemplate(contentItem, contentItemIndex, contentIte
         name: bib_toTitleCase(contentItem.fields.name),
         url: contentItem.fields.url,
         headline: contentItem.fields.headline,
-        imageUrl: (contentItem.fields.squareImage ? contentItem.fields.squareImage.urlContent : null),
+        imageUrl: (contentItem.fields.squareImage ? contentItem.fields.squareImage.contentUrl : null),
         relatedBy: contentItem.relationships.inCommon,
         tileNumber: (contentItemIndex + 1)
     };
@@ -119,9 +119,9 @@ function bib_toTitleCase(str) {
 
 function bib_getPresetModuleClasses(stylePreset) {
   var presets = {
-    "grid-4": "bib__module bib--grd-4 bib-wide",
-    "box-5": "bib__module bib--box-5 bib-wide",
-    "box-6": "bib__module bib--box-6 bib—wide"
+    "grid-4": "bib__module bib--grd-4 bib--wide",
+    "box-5": "bib__module bib--box-5 bib--wide",
+    "box-6": "bib__module bib--box-6 bib--wide"
   };
   return presets[stylePreset] || presets["box-6"];
 }
