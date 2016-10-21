@@ -1,11 +1,7 @@
 
 # encoding=utf8
 
-<<<<<<< HEAD
-"""TO-DO: Write a description of what this XBlock is."""
-=======
 """XBlock to display content recommendations using the Bibblio API."""
->>>>>>> ed1a543e6fbf4efa472f7c627fabe13eb9505fb3
 
 import bibbliothon
 import pkg_resources
