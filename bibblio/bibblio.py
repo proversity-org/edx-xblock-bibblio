@@ -1,7 +1,11 @@
 
 # encoding=utf8
 
+<<<<<<< HEAD
 """TO-DO: Write a description of what this XBlock is."""
+=======
+"""XBlock to display content recommendations using the Bibblio API."""
+>>>>>>> ed1a543e6fbf4efa472f7c627fabe13eb9505fb3
 
 import bibbliothon
 import pkg_resources
@@ -10,31 +14,40 @@ from xblock.core import XBlock
 from xblock.fields import Scope, Integer, String
 from xblock.fragment import Fragment
 from xblockutils.studio_editable import StudioEditableXBlockMixin
+from xblockutils.settings import XBlockWithSettingsMixin
 
 # Global variables
 fontawesome_js = 'https://use.fontawesome.com/c80492468b.js'
 
-class BibblioXBlock(StudioEditableXBlockMixin, XBlock):
+@XBlock.wants('settings')
+class BibblioXBlock(XBlock, StudioEditableXBlockMixin, XBlockWithSettingsMixin):
     """
-    TO-DO: document what your XBlock does.
+    XBlock to display content recommendations using the Bibblio API
     """
-
-    # Fields are defined on the class.  You can access them in your code as
-    # self.<fieldname>.
+    display_name = String(
+        display_name="Display Name",
+        help="This name appears in the horizontal navigation at the top of the page.",
+        scope=Scope.settings,
+        default="Bibblio Recommendations"
+    )
 
     content_item_id = String(
         display_name="Content Item ID",
-        help="Will retrieve recommendations based on this ID.",
+        help="Bibblio ContentItemId corresponding to the recommendation source video.",
         default='',
         scope=Scope.content
     )
+
     catalog_id = String(
         display_name="Catalog ID",
-        help="Catalog of the organization (eg. Network Rail).",
+        help="[Optional] Bibblio Catalog from which recommendations should load.",
         default='',
         scope=Scope.content
     )
-    editable_fields = ('content_item_id', 'catalog_id',)
+
+    editable_fields = ('display_name', 'content_item_id', 'catalog_id',)
+
+    block_settings_key = 'bibblio'
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -80,8 +93,11 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock):
         # Just to show data coming in...
         assert data['hello'] == 'world'
 
-        bibbliothon.client_id = 'ff90bfe4'
-        bibbliothon.client_secret = '1c2428219c598bcfc6cc26a197afbc47'
+        settings = self.get_xblock_settings(default={})
+        assert settings['client_id'] and settings['client_secret']
+
+        bibbliothon.client_id = settings['client_id']
+        bibbliothon.client_secret = settings['client_secret']
 
         response = bibbliothon.Token.get_access_token()
         access_token = response.get('access_token', None)

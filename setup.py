@@ -21,10 +21,17 @@ def package_data(pkg, roots):
 
 
 setup(
+<<<<<<< HEAD
     name='bibblio-xblock',
     version='0.1',
     description='bibblio XBlock',   # TODO: write a better description.
     license='UNKNOWN',          # TODO: choose a license: 'AGPL v3' and 'Apache 2.0' are popular.
+=======
+    name='edx-xblock-bibblio',
+    version='0.1',
+    description='XBlock for Bibblio Recommendations',
+    license='AGPL v3',
+>>>>>>> ed1a543e6fbf4efa472f7c627fabe13eb9505fb3
     packages=[
         'bibblio',
     ],
