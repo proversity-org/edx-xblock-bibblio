@@ -13,7 +13,6 @@ function BibblioXBlock(runtime, element) {
 
         function loadRecommendations() {
             $("#loading").show();
-            $("#title").empty();
             $("#bib_related-content").empty();
             $.ajax({
                 type: "POST",
@@ -26,18 +25,18 @@ function BibblioXBlock(runtime, element) {
         function showRecommendations(result) {
             $("#loading").hide();
             var contentItem = result.contentItem;
-
+            var catalogId = result.catalogId;
             if (contentItem.status >= 400) {
-                $("#title").append('Content Item not found.');
+                // Something went wrong
             } else {
-                $("#title").append('Recommendations for <a href="' + contentItem.url + '" target="_blank">' + contentItem.name + '</a>');  
                 bib_initRelatedContent("bib_related-content",
                     result.token,
                     contentItem.contentItemId,
                     {
-                        stylePreset: "grid-4", // Options: grid-4, box-5, box-6. Default: box-6,
+                        stylePreset: "grid-4",
+                        catalogueIds: [catalogId]
                     }
-                ); 
+                );
             }
         }
     });
