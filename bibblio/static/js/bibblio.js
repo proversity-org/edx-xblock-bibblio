@@ -34,7 +34,8 @@ function BibblioXBlock(runtime, element) {
                     contentItem.contentItemId,
                     {
                         stylePreset: "grid-4",
-                        catalogueIds: [catalogId]
+                        catalogueIds: [catalogId],
+                        showRelatedBy: true
                     }
                 );
             }
