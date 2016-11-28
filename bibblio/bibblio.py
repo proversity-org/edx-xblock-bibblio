@@ -51,6 +51,7 @@ class BibblioXBlock(XBlock, StudioEditableXBlockMixin, XBlockWithSettingsMixin):
         return data.decode("utf8")
 
     # TO-DO: change this view to display your data your own way.
+    @XBlock.supports("multi_device")
     def student_view(self, context=None):
         """
         The primary view of the BibblioXBlock, shown to students
