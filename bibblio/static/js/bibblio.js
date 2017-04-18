@@ -29,7 +29,7 @@ function BibblioXBlock(runtime, element) {
             if (contentItem.status >= 400) {
                 // Something went wrong
             } else {
-                initRelatedContent("bib_related-content",
+                Bibblio.initRelatedContent("bib_related-content",
                     result.token,
                     contentItem.contentItemId,
                     {
