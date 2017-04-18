@@ -5,12 +5,6 @@ function BibblioXBlock(runtime, element) {
         $("#loading").hide();
         var handlerUrl = runtime.handlerUrl(element, 'recommendations');
 
-        loadRecommendations()
-
-        $('button', element).click(function(eventObject) {
-            loadRecommendations()
-        });
-
         function loadRecommendations() {
             $("#loading").show();
             $("#bib_related-content").empty();
@@ -22,6 +16,12 @@ function BibblioXBlock(runtime, element) {
             });
         }
 
+        loadRecommendations()
+
+        $('button', element).click(function(eventObject) {
+            loadRecommendations()
+        });
+
         function showRecommendations(result) {
             $("#loading").hide();
             var contentItem = result.contentItem;
@@ -29,7 +29,7 @@ function BibblioXBlock(runtime, element) {
             if (contentItem.status >= 400) {
                 // Something went wrong
             } else {
-                bib_initRelatedContent("bib_related-content",
+                initRelatedContent("bib_related-content",
                     result.token,
                     contentItem.contentItemId,
                     {
