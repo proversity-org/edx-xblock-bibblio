@@ -22,7 +22,7 @@ def package_data(pkg, roots):
 
 setup(
     name='edx-xblock-bibblio',
-    version='0.1',
+    version='0.2',
     description='XBlock for Bibblio Recommendations',
     license='AGPL v3',
     packages=[
