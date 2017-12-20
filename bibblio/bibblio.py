@@ -88,7 +88,7 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock, XBlockWithSettingsMixin):
         frag.add_css(
             self.resource_string("public/css/bib-related-content.css")
         )
-        
+
         frag.add_javascript_url(
             self.runtime.local_resource_url(
                 self, 'public/js/underscore-min.js'
@@ -101,7 +101,7 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock, XBlockWithSettingsMixin):
             )
         )
 
-        frag.add_javascript(self.resource_string("static/js/bibblio.js"))    
+        frag.add_javascript(self.resource_string("static/js/bibblio.js"))
         frag.initialize_js('BibblioXBlock', {
             'xblockId': xblock_id
         })
@@ -116,7 +116,9 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock, XBlockWithSettingsMixin):
 
         # Make sure the Bibblio recommendation key is set on settings
         settings = self.get_xblock_settings(default={})
-        assert settings['recommendation_key']
+        if 'recommendation_key' not in settings:
+            logger.error('No recommendation_key set, unable to contact Bibblio')
+            return {};
 
         response = { "recommendationKey": settings['recommendation_key'] };
 
@@ -139,5 +141,5 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock, XBlockWithSettingsMixin):
 
         if user_id:
             response["userId"] = user_id
-        
+
         return response
