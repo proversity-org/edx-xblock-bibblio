@@ -38,7 +38,7 @@ Add to ```XBLOCK_SETTINGS``` inside ```lms.env.json``` the following
 ```
 "XBLOCK_SETTINGS": {
         "bibblio": {
-            "recommendatino_key": "xxxxxxxx"
+            "recommendation_key": "xxxxxxxx"
         }
     }
 ```

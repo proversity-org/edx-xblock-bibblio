@@ -26,24 +26,31 @@ function BibblioXBlock(runtime, element, data) {
             var contentItemId = 'contentItemId' in result ? result.contentItemId : null;
             var catalogIds = 'catalogIds' in result ? result.catalogIds : null;
             var userId = 'userId' in result ? result.userId : null;
-            if (contentItemId) {
+            var customUniqueIdentifier = 'customUniqueIdentifier' in result ? result.customUniqueIdentifier : null;
+            if (contentItemId || customUniqueIdentifier) {
                 var configuration = {
-                    stylePreset: "bib--grd-4 bib--wide",
-                    showRelatedBy: true
+                    targetElementId: bibblioContentId,
+                    recommendationKey: recommendationKey,
+                    styleClasses: "bib--grd-4 bib--wide"
                 }
 
                 if (userId) { configuration['userId'] = userId; }
+                if (contentItemId) {
+                    configuration['contentItemId'] = contentItemId;
+                }
+
+                if (customUniqueIdentifier) {
+                    configuration['customUniqueIdentifier'] = customUniqueIdentifier;
+                    configuration['autoIngestion'] = true;
+                }
+
                 if (catalogIds) {
                     configuration['catalogueIds'] = [catalogIds];
                 }
                 
-                Bibblio.initRelatedContent(bibblioContentId,
-                    recommendationKey,
-                    contentItemId,
-                    configuration
-                );
+                Bibblio.initRelatedContent(configuration);
             } else {
-                var msg = "<p>No content item id provided.</p>";
+                var msg = "<p>No content item id or custom unique identifier provided.</p>";
                 $("#" + bibblioContentId).append(msg);
             }
         }

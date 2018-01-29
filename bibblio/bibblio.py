@@ -42,6 +42,17 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock, XBlockWithSettingsMixin):
         scope=Scope.content
     )
 
+    custom_unique_identifier = String(
+        display_name=_("Custom Unique Identifier"),
+        help=_(
+            "The Bibblio customUniqueIdentifier is used instead of the Content Item ID. "
+            "This unique identifier needs to be provided when creating a Content Item in Bibblio. "
+            "To auto ingest content from Bibblio the custom unique idenfifier needs to exist."
+        ),
+        default="",
+        scope=Scope.content
+    )
+
     catalog_ids = String(
         display_name=_("Catalog IDs"),
         help=_(
@@ -52,7 +63,7 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock, XBlockWithSettingsMixin):
         scope=Scope.content
     )
 
-    editable_fields = ('display_name', 'content_item_id', 'catalog_ids',)
+    editable_fields = ('display_name', 'content_item_id', 'catalog_ids', 'custom_unique_identifier',)
 
     block_settings_key = 'bibblio'
 
@@ -118,7 +129,7 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock, XBlockWithSettingsMixin):
         settings = self.get_xblock_settings(default={})
         if 'recommendation_key' not in settings:
             logger.error('No recommendation_key set, unable to contact Bibblio')
-            return {};
+            return {}
 
         response = { "recommendationKey": settings['recommendation_key'] };
 
@@ -129,6 +140,9 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock, XBlockWithSettingsMixin):
         # Add the catalog_ids
         if len(self.catalog_ids) > 0:
             response["catalogIds"] = self.catalog_ids
+
+        if len(self.custom_unique_identifier) > 0:
+            response["customUniqueIdentifier"] = self.custom_unique_identifier
 
         # Add the user_id
         user_id = None
