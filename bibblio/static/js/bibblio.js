@@ -24,7 +24,7 @@ function BibblioXBlock(runtime, element, data) {
             $("#" + loadingId).hide();
             var recommendationKey = result.recommendationKey;
             var contentItemId = 'contentItemId' in result ? result.contentItemId : null;
-            var catalogIds = 'catalogIds' in result ? result.catalogIds : null;
+            var catalogIds = 'catalogIds' in result ? result.catalogIds : [];
             var userId = 'userId' in result ? result.userId : null;
             var customUniqueIdentifier = 'customUniqueIdentifier' in result ? result.customUniqueIdentifier : null;
             if (contentItemId || customUniqueIdentifier) {
@@ -45,7 +45,7 @@ function BibblioXBlock(runtime, element, data) {
                 }
 
                 if (catalogIds) {
-                    configuration['catalogueIds'] = [catalogIds];
+                    configuration['catalogueIds'] = catalogIds;
                 }
                 
                 Bibblio.initRelatedContent(configuration);
