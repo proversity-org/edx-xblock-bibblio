@@ -44,3 +44,7 @@ Add to ```XBLOCK_SETTINGS``` inside ```lms.env.json``` the following
 ```
 
 Then add your ```xblock``` on ```Advanced Settings``` of the course as ```bibblio``` in ```Advanced Module List```
+
+## Notes
+To use the feature of auto ingesting content we need to add a customUniqueIdenfier when
+creating a new Content Item in Bibblio.
