@@ -25,7 +25,7 @@ def package_data(pkg, roots):
 
 setup(
     name='edx-xblock-bibblio',
-    version='0.4',
+    version='0.6',
     description='XBlock for Bibblio Recommendations',
     license='AGPL v3',
     packages=[
