@@ -139,8 +139,7 @@ class BibblioXBlock(StudioEditableXBlockMixin, XBlock, XBlockWithSettingsMixin):
 
         # Add the catalog_ids
         if len(self.catalog_ids) > 0:
-            catalog_ids = self.catalog_ids.replace(" ", "")
-            catalog_ids = catalog_ids.split(",")
+            catalog_ids = self.catalog_ids.replace(" ", "").split(",")
             response["catalogIds"] = catalog_ids
 
         if len(self.custom_unique_identifier) > 0:
